@@ -1,8 +1,3 @@
-// require('./landing');
-// require('./collection');
-// require('./album');
-// require('./profile');
-
 var albumPicasso = {
   name: 'The Colors',
   artist: 'Pablo Picasso',

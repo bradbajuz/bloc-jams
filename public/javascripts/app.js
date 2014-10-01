@@ -263,11 +263,6 @@ if (document.URL.match(/\/album.html/)) {
 });
 
 ;require.register("scripts/app", function(exports, require, module) {
-// require('./landing');
-// require('./collection');
-// require('./album');
-// require('./profile');
-
 var albumPicasso = {
   name: 'The Colors',
   artist: 'Pablo Picasso',
@@ -330,96 +325,6 @@ blocJams.controller('Collection.controller', ['$scope', function($scope) {
       $scope.albums.push(angular.copy(albumPicasso));
     }
 }]);
-});
-
-;require.register("scripts/collection", function(exports, require, module) {
-var buildAlbumThumbnail = function() {
-  var template =
-      '<div class="collection-album-container col-md-2">'
-     + ' <div class="collection-album-image-container">' 
-     + '  <img src="/images/album-placeholder.png"/>'
-     + ' </div>'
-     + ' <div class="caption album-collection-info">'
-     + '   <p>'
-     + '     <a class="album-name" href="/album.html"> Album Name </a>'
-     + '     <br/>'
-     + '     <a href="/album.html"> Artist name </a>'
-     + '     <br/>'
-     + '     X songs'
-     + '     <br/>'
-     + '   </p>'
-     + ' </div>'
-     + '</div>';
-
-  return $(template);
-};
-
-var buildAlbumOverlay = function(albumURL) {
-  var template =
-      '<div class="collection-album-image-overlay">'
-    + ' <div class="collection-overlay-content">'
-    + '   <a class="collection-overlay-button" href="' + albumURL + '">'
-    + '     <i class="fa fa-play"></i>'
-    + '   </a>'
-    + '   &nbsp;'
-    + '   <a class="collection-overlay-button">'
-    + '     <i class="fa fa-plus"></i>'
-    + '   </a>'
-    + ' </div>'
-    + '</div>'
-    ;
-  return $(template);
-};
-
-var updateCollectionView = function() {
-  var $collection = $(".collection-container .row");
-  $collection.empty();
-
-  for (var i = 0; i < 33; i++) {
-    var $newThumbnail = buildAlbumThumbnail();
-    $collection.append($newThumbnail);
-  }
-
-  var onHover = function(event) {
-    $(this).append(buildAlbumOverlay("/album.html"));
-  };
-
-  var offHover = function(event) {
-    $(this).find('.collection-album-image-overlay').remove();
-  };
-
-    $collection.find('.collection-album-image-container').hover(onHover, offHover);
-};
-
-if (document.URL.match(/\/collection.html/)) {
-  // Wait until the HTML is fully processed.
-  $(document).ready(function() {
-    // Your code goes here.
-    updateCollectionView();
-  });
-}
-
-});
-
-;require.register("scripts/landing", function(exports, require, module) {
-$(document).ready(function() {
-  $('.hero-content h3').click(function(){
-    subText = $(this).text();
-    $(this).text(subText + "!");
-  });
-
-  var onHoverAction = function(event) {
-    console.log('Hover action triggered.');
-    $(this).animate({'margin-top': '10px'});
-  };
-
-  var offHoverAction = function(event) {
-    console.log('Off-hover action triggered.');
-    $(this).animate({'margin-top': '0px'});
-  };
-
-  $('.selling-points .point').hover(onHoverAction, offHoverAction);
-});
 });
 
 ;require.register("scripts/profile", function(exports, require, module) {
